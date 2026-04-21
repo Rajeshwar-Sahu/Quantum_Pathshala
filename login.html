@@ -1,8 +1,26 @@
-<input id="email" placeholder="Email">
-<input id="pass" type="password">
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
 
-<button onclick="loginUser()">Login</button>
-<button onclick="signupUser()">Signup</button>
+<body>
+
+<header>
+  <h2>Login</h2>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <input id="email" placeholder="Email">
+    <input id="pass" type="password" placeholder="Password">
+
+    <button onclick="loginUser()">Login</button>
+    <button onclick="signupUser()">Signup</button>
+  </div>
+
+</div>
 
 <script type="module">
 import { login, signup } from './assets/js/auth.js';
@@ -17,3 +35,6 @@ window.signupUser = async () => {
   alert("User created");
 };
 </script>
+
+</body>
+</html>
