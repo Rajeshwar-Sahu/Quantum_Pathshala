@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Physics</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
@@ -13,7 +12,7 @@
 </header>
 
 <div class="container">
-  <div id="chapters"></div>
+  <div id="chapters" class="grid"></div>
 </div>
 
 <script type="module">
@@ -22,33 +21,27 @@ import { db } from '../assets/js/app.js';
 import { collection, query, where, getDocs }
 from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
-async function load() {
+const q = query(
+  collection(db, "chapters"),
+  where("subject", "==", "Physics")
+);
 
-  const q = query(
-    collection(db, "chapters"),
-    where("subject", "==", "Physics")
-  );
+const snap = await getDocs(q);
 
-  const snap = await getDocs(q);
+let html = "";
 
-  let html = "";
+snap.forEach(doc => {
+  const d = doc.data();
 
-  snap.forEach(doc => {
-    const d = doc.data();
+  html += `
+    <div class="card">
+      <h3>${d.title}</h3>
+      <a href="../chapter.html?id=${doc.id}">Open</a>
+    </div>
+  `;
+});
 
-    html += `
-      <div class="card">
-        <h3>${d.title}</h3>
-        <a href="../chapter.html?id=${doc.id}">Open</a>
-      </div>
-    `;
-  });
-
-  document.getElementById("chapters").innerHTML =
-    html || "<p>No chapters available</p>";
-}
-
-load();
+chapters.innerHTML = html;
 
 </script>
 
