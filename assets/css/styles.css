@@ -15,16 +15,11 @@ header {
   align-items: center;
 }
 
-/* NAV LINKS */
 header a {
   color: white;
   margin-left: 15px;
   text-decoration: none;
   font-weight: 500;
-}
-
-header a:hover {
-  opacity: 0.8;
 }
 
 /* CONTAINER */
@@ -45,12 +40,11 @@ header a:hover {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 /* BUTTON */
@@ -58,13 +52,9 @@ button {
   background: #4e73df;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 10px;
   border-radius: 6px;
   cursor: pointer;
-}
-
-button:hover {
-  background: #2e59d9;
 }
 
 /* INPUT */
@@ -72,16 +62,4 @@ input, textarea {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-/* TITLE */
-h1, h2, h3 {
-  margin-bottom: 10px;
-}
-
-/* LINKS */
-a {
-  color: #4e73df;
 }
