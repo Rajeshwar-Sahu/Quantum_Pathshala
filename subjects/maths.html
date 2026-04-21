@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maths</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+
+<header>
+  <h2>Maths</h2>
+  <a href="../index.html">Home</a>
+</header>
+
+<div class="container">
+  <div id="chapters"></div>
+</div>
+
+<script type="module">
+
+import { db } from '../assets/js/app.js';
+import { collection, query, where, getDocs }
+from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+
+async function load() {
+
+  const q = query(
+    collection(db, "chapters"),
+    where("subject", "==", "Maths")
+  );
+
+  const snap = await getDocs(q);
+
+  let html = "";
+
+  snap.forEach(doc => {
+    const d = doc.data();
+
+    html += `
+      <div class="card">
+        <h3>${d.title}</h3>
+        <a href="../chapter.html?id=${doc.id}">Open</a>
+      </div>
+    `;
+  });
+
+  document.getElementById("chapters").innerHTML =
+    html || "<p>No chapters available</p>";
+}
+
+load();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<input id="email" placeholder="Email">
+<input id="pass" type="password">
+
+<button onclick="loginUser()">Login</button>
+<button onclick="signupUser()">Signup</button>
+
+<script type="module">
+import { login, signup } from './assets/js/auth.js';
+
+window.loginUser = async () => {
+  await login(email.value, pass.value);
+  location.href = "dashboard.html";
+};
+
+window.signupUser = async () => {
+  await signup(email.value, pass.value);
+  alert("User created");
+};
+</script>

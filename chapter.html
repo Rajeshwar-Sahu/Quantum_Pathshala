@@ -1,0 +1,35 @@
+<h2 id="title"></h2>
+<p id="content"></p>
+
+<iframe id="video" width="400"></iframe>
+
+<button onclick="complete()">Complete</button>
+
+<script type="module">
+
+import { db, auth } from './assets/js/app.js';
+import { doc, getDoc, updateDoc, arrayUnion }
+from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+
+const id = new URLSearchParams(location.search).get("id");
+
+async function load() {
+  const snap = await getDoc(doc(db, "chapters", id));
+  const d = snap.data();
+
+  title.innerText = d.title;
+  content.innerText = d.content;
+  video.src = d.video;
+}
+
+window.complete = async () => {
+  await updateDoc(doc(db, "users", auth.currentUser.uid), {
+    completed: arrayUnion(id)
+  });
+
+  alert("Done");
+};
+
+load();
+
+</script>
